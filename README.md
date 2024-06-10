@@ -1,5 +1,7 @@
 # Documentação do Projeto Financial Analysis
 
+> ⏰ Devido ao nosso projeto usar 100% de bibliotecas gratuitas, alguns dados de empresas na análise fundamentalista podem vir vazios ou dar algum tipo de erro. Estamos trabalhando o mais rápido possível por uma alternativa. 
+
 ## Índice
 
 - [Introdução](#introdução)
