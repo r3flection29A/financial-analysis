@@ -1,0 +1,9 @@
+streamlit
+seaborn
+ta
+numpy
+plotly
+yfinance
+pandas
+fundamentus
+MetaTrader5
