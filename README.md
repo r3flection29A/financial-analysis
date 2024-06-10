@@ -50,7 +50,7 @@ Antes de rodar o projeto, certifique-se de que você tem os seguintes componente
 ## Como rodar o projeto
 
 Para iniciar o aplicativo Streamlit, execute o seguinte comando no terminal dentro do diretório do projeto:
-    ```bash  
+    ``` 
     streamlit run app.py
     ```
 
