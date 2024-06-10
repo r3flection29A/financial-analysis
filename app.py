@@ -375,30 +375,30 @@ def analysis_page():
 
             if last_rsi > 70:
                 insight += "RSI está acima de 70, sugerindo que o ativo está sobrecomprado. "
-                st.write(insight)
+                st.subheader(insight)
             elif last_rsi < 30:
                 insight += "RSI está abaixo de 30, sugerindo que o ativo está sobrevendido. "
-                st.write(insight)
+                st.subheader(insight)
 
             if last_macd > last_signal_line:
                 insight += "Sinal de compra do MACD. "
-                st.write(insight)
+                st.subheader(insight)
 
             elif last_macd < last_signal_line:
                 insight += "Sinal de venda do MACD. "
-                st.write(insight)
+                st.subheader(insight)
 
             if last_stoch_k > last_stoch_d and last_stoch_k > 80:
                 insight += "Oscilador Estocástico indica sobrecompra. "
-                st.write(insight)
+                st.subheader(insight)
 
             elif last_stoch_k < last_stoch_d and last_stoch_k < 20:
                 insight += "Oscilador Estocástico indica sobrevenda. "
-                st.write(insight)
+                st.subheader(insight)
 
             if insight == "":
                 insight = "Não há insights de investimento claros com base nos indicadores analisados."
-                st.write(insight)
+                st.subheader(insight)
 
             # Plotting
             fig = make_subplots(rows=5, cols=1, shared_xaxes=True, vertical_spacing=0.05, row_heights=[0.3, 0.3, 0.3, 0.3, 0.1])
@@ -444,32 +444,44 @@ def papers():
         with st.expander('Ativo 1', expanded=True):
             papel1 = st.selectbox('Selecione o Papel', lista_tickers)
             info_papel1 = fd.get_detalhes_papel(papel1)
-            st.write('**Empresa:**', info_papel1['Empresa'][0])
-            st.write('**Setor:**', info_papel1['Setor'][0])
-            st.write('**Subsetor:**', info_papel1['Subsetor'][0])
-            st.write('**Valor de Mercado:**',f"R$ {info_papel1['Valor_de_mercado'][0]:,.2f}")
-            st.write('**Patrimônio Líquido:**', f"R$ {float(info_papel1['Patrim_Liq'][0]):,.2f}")
-            st.write('**Receita Liq. 12m:**', f"R$ {float(info_papel1['Receita_Liquida_12m'][0]):,.2f}")
-            st.write('**Dívida Bruta:**', f"R$ {float(info_papel1['Div_Bruta'][0]):,.2f}")
-            st.write('**Dívida Líquida:**', f"R$ {float(info_papel1['Div_Liquida'][0]):,.2f}")
-            st.write('**P/L:**', f"{float(info_papel1['PL'][0]):,.2f}")
-            st.write('**Dividend Yield:**', f"{info_papel1['Div_Yield'][0]}")
+            if info_papel1 is None:
+                st.warning('Infelizmente, não temos informações sobre esse papel, mas estamos trabalhando para corrigir isso.')
+            else:
+                try:
+                    st.write('**Empresa:**', info_papel1['Empresa'][0])
+                    st.write('**Setor:**', info_papel1['Setor'][0])
+                    st.write('**Subsetor:**', info_papel1['Subsetor'][0])
+                    st.write('**Valor de Mercado:**',f"R$ {info_papel1['Valor_de_mercado'][0]}")
+                    st.write('**Patrimônio Líquido:**', f"R$ {float(info_papel1['Patrim_Liq'][0]):,.2f}")
+                    st.write('**Receita Liq. 12m:**', f"R$ {float(info_papel1['Receita_Liquida_12m'][0]):,.2f}")
+                    st.write('**Dívida Bruta:**', f"R$ {float(info_papel1['Div_Bruta'][0]):,.2f}")
+                    st.write('**Dívida Líquida:**', f"R$ {float(info_papel1['Div_Liquida'][0]):,.2f}")
+                    st.write('**P/L:**', f"{float(info_papel1['PL'][0]):,.2f}")
+                    st.write('**Dividend Yield:**', f"{info_papel1['Div_Yield'][0]}")
+                except Exception:
+                    st.warning('Tivemos um erro ao processar os dados desse papel completamente. Estamos trabalhando para que não ocorra novamente.')
 
     if comparar:
         with col2:
             with st.expander('Ativo 2', expanded=True):
                 papel2 = st.selectbox('Selecione o 2º Papel', lista_tickers)
                 info_papel2 = fd.get_detalhes_papel(papel2)
-                st.write('**Empresa:**', info_papel2['Empresa'][0])
-                st.write('**Setor:**', info_papel2['Setor'][0])
-                st.write('**Subsetor:**', info_papel2['Subsetor'][0])
-                st.write('**Valor de Mercado:**',f"R$ {info_papel2['Valor_de_mercado'][0]:,.2f}")
-                st.write('**Patrimônio Líquido:**', f"R$ {float(info_papel2['Patrim_Liq'][0]):,.2f}")
-                st.write('**Receita Liq. 12m:**', f"R$ {float(info_papel2['Receita_Liquida_12m'][0]):,.2f}")
-                st.write('**Dívida Bruta:**', f"R$ {float(info_papel2['Div_Bruta'][0]):,.2f}")
-                st.write('**Dívida Líquida:**', f"R$ {float(info_papel2['Div_Liquida'][0]):,.2f}")
-                st.write('**P/L:**', f"{float(info_papel2['PL'][0]):,.2f}")
-                st.write('**Dividend Yield:**', f"{info_papel2['Div_Yield'][0]}")     
+                if info_papel2 is None:
+                    st.warning('Infelizmente, não temos informações sobre esse papel, mas estamos trabalhando para corrigir isso.')
+                else:
+                    try:
+                        st.write('**Empresa:**', info_papel2['Empresa'][0])
+                        st.write('**Setor:**', info_papel2['Setor'][0])
+                        st.write('**Subsetor:**', info_papel2['Subsetor'][0])
+                        st.write('**Valor de Mercado:**',f"R$ {info_papel2['Valor_de_mercado'][0]}")
+                        st.write('**Patrimônio Líquido:**', f"R$ {float(info_papel2['Patrim_Liq'][0]):,.2f}")
+                        st.write('**Receita Liq. 12m:**', f"R$ {float(info_papel2['Receita_Liquida_12m'][0]):,.2f}")
+                        st.write('**Dívida Bruta:**', f"R$ {float(info_papel2['Div_Bruta'][0]):,.2f}")
+                        st.write('**Dívida Líquida:**', f"R$ {float(info_papel2['Div_Liquida'][0]):,.2f}")
+                        st.write('**P/L:**', f"{float(info_papel2['PL'][0]):,.2f}")
+                        st.write('**Dividend Yield:**', f"{info_papel2['Div_Yield'][0]}")     
+                    except Exception:
+                        st.warning('Tivemos um erro ao processar os dados desse papel completamente. Estamos trabalhando para que não ocorra novamente.')
 
 
 def main():
