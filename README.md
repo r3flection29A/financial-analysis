@@ -93,5 +93,6 @@ Na seção Mercado Agora, você tem acesso a informações em tempo real ou em i
 - [ ] Adicionar indice de cointegração
 - [ ] Adicionar mais indices na tela 'Mercado agora'
 - [ ] Backtest completo
+- [ ] Machine Learning insights
 
 #### Feito por João Pedro Roldan, Matheus Martins Gomes, Tiago Floriano de Lima e Thiago Furtado Lima
